@@ -21,6 +21,10 @@ statement
 | loopWhile
 ;
 
+block
+: (statement ';')*
+;
+
 decl
 : 'var' ID
 ;
@@ -34,7 +38,7 @@ print
 ;
 
 loopWhile
-: 'while' '(' expr ')' '{'(statement';')* '}'
+: 'while' '(' expr ')' '{'block '}'
 
 ;
 expr
