@@ -23,7 +23,7 @@ public class RunEloq {
         eloqLexer lexer = new eloqLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         eloqParser parser = new eloqParser(tokens);
-        ParseTree tree = parser.code();
+        ParseTree tree = parser.file();
         ParseTreeWalker walker = new ParseTreeWalker();
         walker.walk(new Interpreter(infnam), tree);
     }

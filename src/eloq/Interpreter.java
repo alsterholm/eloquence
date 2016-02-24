@@ -2,6 +2,9 @@ package eloq;
 
 import eloq.grammar.*;
 import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
+
 import java.util.HashMap;
 import java.util.Stack;
 
@@ -11,13 +14,15 @@ import java.util.Stack;
 public class Interpreter extends eloqBaseListener {
     private static class Variable { int value; }
 
+    private final ParseTreeWalker walker;
     private final String infnam;
-    private final Stack<Integer> exprValue = new Stack<>();
+    private final Stack<Integer> stack = new Stack<>();
     private final HashMap<String, Variable> vars = new HashMap<>();
 
 
     public Interpreter (String infnam) {
         this.infnam = infnam;
+        this.walker = new ParseTreeWalker();
     }
 
     private Variable getVar(Token tok) {
@@ -48,25 +53,57 @@ public class Interpreter extends eloqBaseListener {
     @Override
     public void enterAtomExpr(eloqParser.AtomExprContext ctx) {
         if (ctx.ID() != null) {
-            exprValue.push(getVar(ctx.ID().getSymbol()).value);
+            stack.push(getVar(ctx.ID().getSymbol()).value);
         } else if (ctx.INT() != null) {
-            exprValue.push(Integer.parseInt(ctx.INT().getText()));
+            stack.push(Integer.parseInt(ctx.INT().getText()));
         }
+    }
+
+    @Override
+    public void exitPrint(eloqParser.PrintContext ctx) {
+        System.out.println(stack.pop());
+    }
+
+    @Override
+    public void exitAddExpr(eloqParser.AddExprContext ctx) {
+        stack.push(stack.pop() + stack.pop());
+    }
+
+    @Override
+    public void exitMulExpr(eloqParser.MulExprContext ctx) {
+        stack.push(stack.pop() * stack.pop());
     }
 
     @Override
     public void exitAssign(eloqParser.AssignContext ctx) {
         String var = ctx.ID().getText();
-        vars.get(var).value = exprValue.pop();
+        vars.get(var).value = stack.pop();
     }
 
     @Override
-    public void exitExpr(eloqParser.ExprContext ctx) {
-        if (ctx.expr() != null)
-            exprValue.push(exprValue.pop() + exprValue.pop());
+    public void enterIntervalLoop(eloqParser.IntervalLoopContext ctx) {
+        String var = ctx.ID().getText();
+
+        Variable v = new Variable();
+        walker.walk(this, ctx.expr(0));
+
+        v.value = stack.pop();
+        vars.put(var, v);
     }
 
+    @Override
+    public void exitIntervalLoop(eloqParser.IntervalLoopContext ctx) {
+        ParseTree block = ctx.block();
 
+        int max = stack.pop();
 
+        String var = ctx.ID().getText();
+        Variable v = vars.get(var);
 
+        for (int i = v.value + 1; i <= max; i++) {
+            vars.get(var).value = i;
+
+            walker.walk(this, block);
+        }
+    }
 }

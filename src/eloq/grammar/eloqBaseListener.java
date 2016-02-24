@@ -1,4 +1,4 @@
-// Generated from /home/student/Skrivbord/Delade mappar/sf_nand2tetris/Assignment2/eloquence/src/eloq/grammar/eloq.g4 by ANTLR 4.5.1
+// Generated from /Users/andreas/code/sys/eloquence/src/eloq/grammar/eloq.g4 by ANTLR 4.5.1
 package eloq.grammar;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -52,6 +52,18 @@ public class eloqBaseListener implements eloqListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterBlock(eloqParser.BlockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBlock(eloqParser.BlockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterDecl(eloqParser.DeclContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -88,18 +100,6 @@ public class eloqBaseListener implements eloqListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLoopWhile(eloqParser.LoopWhileContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitLoopWhile(eloqParser.LoopWhileContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterExpr(eloqParser.ExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -107,6 +107,42 @@ public class eloqBaseListener implements eloqListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitExpr(eloqParser.ExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAddExpr(eloqParser.AddExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAddExpr(eloqParser.AddExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMulExpr(eloqParser.MulExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMulExpr(eloqParser.MulExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterIntervalLoop(eloqParser.IntervalLoopContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIntervalLoop(eloqParser.IntervalLoopContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

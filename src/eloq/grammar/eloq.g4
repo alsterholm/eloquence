@@ -1,16 +1,11 @@
 grammar eloq;
 
-// Remove this header if using the default IntelliJ project layout
-@header {
-package eloq.grammar;
-}
-
 file
 : code
 ;
 
 code
-: statement ';' code
+: statement code
 | EOF                           // implicitly defined terminal
 ;
 
@@ -18,11 +13,11 @@ statement
 : decl
 | assign
 | print
-| loopWhile
+| intervalLoop
 ;
 
 block
-: (statement ';')*
+: (statement)*
 ;
 
 decl
@@ -37,21 +32,30 @@ print
 : 'print' expr
 ;
 
-loopWhile
-: 'while' '(' expr ')' '{'block '}'
-;
-
 expr
 : atomExpr
-| expr '+' expr
-| expr '<' expr
+| addExpr
+| mulExpr
+;
+
+addExpr
+: atomExpr '+' expr
+;
+
+mulExpr
+: atomExpr '*' expr
+;
+
+intervalLoop
+: 'for' expr 'through' expr 'as' ID '{' block '}'
 ;
 
 atomExpr
 : ID
 | INT
+| '(' expr ')'
 ;
 
-ID:	('a'..'z')+ ;
+ID:	    ('a'..'z')+ ;
 INT:	('0'..'9')+ ;
-WS:	[ \n\t\r]+ -> skip ;
+WS:	    [ \n\t\r;]+ -> skip ;

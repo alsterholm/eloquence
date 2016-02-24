@@ -1,6 +1,5 @@
-// Generated from /home/student/Skrivbord/Delade mappar/sf_nand2tetris/Assignment2/eloquence/src/eloq/grammar/eloq.g4 by ANTLR 4.5.1
+// Generated from /Users/andreas/code/sys/eloquence/src/eloq/grammar/eloq.g4 by ANTLR 4.5.1
 package eloq.grammar;
-
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -39,6 +38,16 @@ public interface eloqListener extends ParseTreeListener {
 	 */
 	void exitStatement(eloqParser.StatementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link eloqParser#block}.
+	 * @param ctx the parse tree
+	 */
+	void enterBlock(eloqParser.BlockContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link eloqParser#block}.
+	 * @param ctx the parse tree
+	 */
+	void exitBlock(eloqParser.BlockContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link eloqParser#decl}.
 	 * @param ctx the parse tree
 	 */
@@ -69,16 +78,6 @@ public interface eloqListener extends ParseTreeListener {
 	 */
 	void exitPrint(eloqParser.PrintContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link eloqParser#loopWhile}.
-	 * @param ctx the parse tree
-	 */
-	void enterLoopWhile(eloqParser.LoopWhileContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link eloqParser#loopWhile}.
-	 * @param ctx the parse tree
-	 */
-	void exitLoopWhile(eloqParser.LoopWhileContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link eloqParser#expr}.
 	 * @param ctx the parse tree
 	 */
@@ -88,6 +87,36 @@ public interface eloqListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpr(eloqParser.ExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link eloqParser#addExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterAddExpr(eloqParser.AddExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link eloqParser#addExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitAddExpr(eloqParser.AddExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link eloqParser#mulExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterMulExpr(eloqParser.MulExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link eloqParser#mulExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitMulExpr(eloqParser.MulExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link eloqParser#intervalLoop}.
+	 * @param ctx the parse tree
+	 */
+	void enterIntervalLoop(eloqParser.IntervalLoopContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link eloqParser#intervalLoop}.
+	 * @param ctx the parse tree
+	 */
+	void exitIntervalLoop(eloqParser.IntervalLoopContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link eloqParser#atomExpr}.
 	 * @param ctx the parse tree

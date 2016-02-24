@@ -1,3 +1,8 @@
-var a;
-a = 2;
-print a;
+var t
+t = 0
+
+for 10 through 1 as i {
+    t = t + i
+}
+
+print t
