@@ -1,4 +1,8 @@
 var t
-t = 14
-var s
-s = t + 8
+t = 0
+
+for 1 through 10 as i {
+    t = t + i
+}
+
+print t
