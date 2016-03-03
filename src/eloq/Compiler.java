@@ -70,6 +70,14 @@ public class Compiler extends eloqBaseListener {
         writer.add();
     }
 
+    @Override
+    public void exitPrint(eloqParser.PrintContext ctx) {
+        String var = ctx.expr().getText();
+        System.out.println(String.valueOf(stack.getCurrentIndex()));
+        writer.assignVariableFromStack("SCREEN", stack.getCurrentIndex());
+
+    }
+
     public void closeWriter() {
         this.writer.close();
     }
@@ -172,6 +180,9 @@ public class Compiler extends eloqBaseListener {
 
         public void close() {
             try {
+                this.write("(INFINITE_LOOP)");
+                this.load("INFINITE_LOOP");
+                this.write("0;JMP");
                 writer.close();
             } catch (IOException e) {
 
